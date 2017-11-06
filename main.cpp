@@ -1,19 +1,43 @@
 #include <iostream>
 #include “bitmap.h”
+#include <string>
 #include <vector>
 
 Using namespace std;
 
+
 //Receives bitmap filename, check if file is valid. Print error message if invalid.
-int filevalid(bitmap &, );
+void filevalid(bitmap &, );
+
+
 
 int main(){
 
-
-
+int i;
+string userimage;
+ do{
+cout << "Enter BMP File Name" << endl;
+cin >> userimage;
+  if (userimage == 'Done' || userimage == 'done'){
+    break;
+    }
+  else{
+    filevalid();
+    i++;
+    }
+ }
+while ( i < 10);
+  
 return 0;
 }
 
+void filevalid(){
+
+  
+  
+  
+  
+}
 
 
 //Ask user for Filename
