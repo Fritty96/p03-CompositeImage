@@ -6,9 +6,14 @@
 Using namespace std;
 
 
-//Receives bitmap filename, check if file is valid. Print error message if invalid.
-void filevalid(bitmap &, );
-
+//Receives bitmap filename, opens and checks if file is valid. Print error message if invalid.
+bool filevalid(string);
+//Recieves bitmaps. Compares sizes against one another. Print error message if none are same size.
+void checkfiles(Bitmap);
+//Takes a bitmap, averages the colors to create grey, returns completed bitmaps. 
+void averagecolor(Bitmap &)
+//Recieves averaged bitmaps, combines, updates user for process, returns compilation.
+void compile(Bitmap &)
 
 
 int main(){
