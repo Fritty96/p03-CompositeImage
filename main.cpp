@@ -1,62 +1,114 @@
 #include <iostream>
-#include “bitmap.h”
 #include <string>
 #include <vector>
+#include "bitmap.h"
 
-Using namespace std;
+
+using namespace std;
 
 
-//Receives bitmap filename, opens and checks if file is valid. Print error message if invalid.
-bool filevalid(string);
-//Recieves bitmaps. Compares sizes against one another. Print error message if none are same size.
-void checkfiles(Bitmap);
-//Takes a bitmap, averages the colors to create grey, returns completed bitmaps. 
-void averagecolor(Bitmap &)
-//Recieves averaged bitmaps, combines, updates user for process, returns compilation.
-void compile(Bitmap &)
+
+void filevalid(string, vector<string> &, int &);
+
+ 
+vector < vector <Pixel> > MakeAverage(vector < vector <vector <Pixel> > > );
+
+
 
 
 int main(){
 
-int i;
+int i = 0;
 string userimage;
+
+vector < string > fileimages;
+
+
+
  do{
 cout << "Enter BMP File Name" << endl;
 cin >> userimage;
-  if (userimage == 'Done' || userimage == 'done'){
+  if (userimage == "Done" || userimage == "done"){
     break;
     }
   else{
-    filevalid();
-    i++;
+    filevalid( "userimage", fileimages, i);
+    i++; 
     }
  }
 while ( i < 10);
   
+makeAverage();
+
+
 return 0;
 }
 
-void filevalid(){
 
-  
-  
-  
-  
+
+
+
+void filevalid(string a, vector < string > & bmp, int & i){
+
+Bitmap image;
+
+image.open(a);
+bool valid;
+valid = image.isImage();
+
+    if (valid == false){
+    i--;
+    cout << "File entered was not valid BMP file" << endl;
+    }
+    else if (valid == true){
+        if (bmp.size() == 0){
+        bmp.push_back(a);
+        }
+        else if (bmp.size() != 0){
+        Bitmap original;
+
+        original.open(bmp[0]);
+
+        vector <vector <Pixel> > first = original.toPixelMatrix();
+        vector <vector <Pixel> > newpic = image.toPixelMatrix();
+            if (first.size() == newpic.size() && first[0].size() == newpic[0].size()){
+            bmp.push_back(a);
+            }
+            else{
+            cout << "Image size is not compatible with other images." << endl;
+            i--;
+            }
+        }
+
+    }
+
 }
 
 
-//Ask user for Filename
-//check if filename valid.
-//if invalid, print error message
-//Ask again if under 10
-//check files against one another
-//if wrong size, disregard file
-//Continue asking for file until user says ‘done’, or until 10
-//If user says done, with two images of different sizes, print error message
-//if user says done with one image, print error message
-//once count is full or user says done with valid images,
-//create vector of vectors of the images and change image colors using
-//averages of each rbg value 
-//combine files after rgb change
-//print progress after each file is processed
-//save complete combination
+//average function
+
+vector <vector <Pixel > > makeAverage(vector < vector <vector <Pixel> > > huge ){
+
+vector < vector < vector < Pixel > > > huge;
+vector <vector <Pixel > > result;
+Pixel rgb;
+ sumR = 0;
+ sumG = 0;
+ sumB = 0;
+            
+
+
+    for (int row = 0; row < huge.size(); row++){
+        for (int col = 0; col < huge[row].size(); col++){
+            for (int depth = 0; depth < huge[row][col].size(); depth++){
+            rgb = huge[row][col][depth];
+            sumR = sumR + rgb.red;
+            sumG = sumG + rgb.green;
+            sumB = sumB + rbg.blue;
+            
+            }
+            int average = (sumR + sumG + sumB)/depth.size();
+
+       }
+   }
+}
